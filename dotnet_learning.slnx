@@ -1,0 +1,5 @@
+<Solution>
+  <Folder Name="/csharp-basics/">
+    <Project Path="csharp-basics/ConsoleApp/ConsoleApp.csproj" />
+  </Folder>
+</Solution>
