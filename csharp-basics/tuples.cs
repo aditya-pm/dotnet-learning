@@ -12,12 +12,20 @@
 // 1. BASIC CREATION
 void BasicCreation()
 {
+    // ValueTuple
     var point = (1, 2);
-
     Console.WriteLine(point);
     Console.WriteLine(point.Item1);
     Console.WriteLine(point.Item2);
-}
+
+    // named ValueTuple (type inferred)
+    var user1 = (Name: "Alice", Age: 22);
+    // also named ValueTuple, just different syntax (explici type declaration)
+    (string Name, int Age) user2 = ("Bob", 25);
+
+    Console.WriteLine(user1.Name);
+    Console.WriteLine(user2.Name);
+}   
 
 /*
 Unnamed tuple:
@@ -38,8 +46,8 @@ void NamedVsUnnamed()
 }
 
 /*
-Names are compile-time only.
-Runtime storage is positional (ValueTuple fields).
+Tuple compatibility depends on position and type.
+Element names improve readability.
 */
 
 
@@ -116,6 +124,11 @@ void Deconstruction()
 
     Console.WriteLine(x);
     Console.WriteLine(y);
+
+    // discard unwanted values
+    var (_, onlyY) = point;
+
+    Console.WriteLine(onlyY);
 }
 
 /*
@@ -186,7 +199,8 @@ Tuples are great for:
 - quick returns
 - lightweight grouping
 
-NOT for:
-- complex domain models
-- long-term data structures
+NOT IDEAL for:
+- domain models
+- objects with behavior
+- complex business entities
 */
