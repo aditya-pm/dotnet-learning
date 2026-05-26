@@ -71,8 +71,44 @@ void Fibonacci()
 
     foreach (int num in sequence)
     {
-        Console.Write($"{num}, ");
+        Console.Write($"{num} ");
     }
 }
 
 Fibonacci();
+
+
+// Insert at position
+names.Insert(1, "John");
+
+
+// Remove by index
+names.RemoveAt(0);
+
+
+// Check if exists
+if (names.Contains("Bill"))
+{
+    Console.WriteLine("Bill exists");
+}
+
+
+// Clear entire list
+// names.Clear();
+
+
+// Reverse
+names.Reverse();
+
+
+// Copy list
+List<string> copy = new List<string>(names);
+
+
+// Find first match
+var result = names.Find(name => name.StartsWith("M"));
+Console.WriteLine(result);
+
+
+// Filter items
+var filtered = names.Where(name => name.Length > 4).ToList();
