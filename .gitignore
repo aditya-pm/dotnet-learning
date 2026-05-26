@@ -12,3 +12,5 @@ obj/
 # Rider / VS
 .idea/
 .vs/
+
+Testing.cs
