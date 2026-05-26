@@ -17,14 +17,17 @@ foreach (var name in names)
 }
 Console.WriteLine();
 
+
 // List indexing
 Console.WriteLine($"Name in index position 0 is {names[0]}");
 Console.WriteLine($"Name in index position 1 is {names[1]}");
 Console.WriteLine();
 
+
 // List.Count
 Console.WriteLine($"The list names has {names.Count} names in it");
 Console.WriteLine();
+
 
 // IndexOf
 var index = names.IndexOf("Felipe");
