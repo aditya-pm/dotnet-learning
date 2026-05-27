@@ -1,0 +1,246 @@
+C# + .NET + ASP.NET Core Roadmap
+================================
+
+PHASE 1 — CORE C# BEFORE ASP.NET
+--------------------------------
+01. Exceptions.cs
+    - try / catch
+    - finally
+    - throw
+    - custom exceptions
+    - exception hierarchy
+    - stack unwinding
+    - throw vs throw ex
+    - exception filters
+
+02. Delegates.cs
+    - delegate keyword
+    - delegate variables
+    - multicast delegates
+    - Func<>
+    - Action<>
+    - Predicate<>
+
+03. LambdaExpressions.cs
+    - => syntax
+    - expression lambdas
+    - statement lambdas
+    - closures
+    - captures
+
+04. Events.cs
+    - event keyword
+    - publisher subscriber model
+    - EventHandler
+    - custom events
+
+05. LINQ.cs
+    - Where()
+    - Select()
+    - OrderBy()
+    - ThenBy()
+    - First()
+    - FirstOrDefault()
+    - Single()
+    - Any()
+    - All()
+    - Count()
+    - GroupBy()
+    - Distinct()
+    - SelectMany()
+
+06. AsyncAwait.cs
+    - async
+    - await
+    - Task
+    - Task<T>
+    - ConfigureAwait
+    - parallel tasks
+    - Task.WhenAll()
+    - Task.WhenAny()
+
+07. FileIO.cs
+    - File
+    - Directory
+    - Path
+    - StreamReader
+    - StreamWriter
+    - serialization basics
+
+08. CollectionsAdvanced.cs
+    - Dictionary<TKey, TValue>
+    - HashSet<T>
+    - Queue<T>
+    - Stack<T>
+    - LinkedList<T>
+    - SortedDictionary<T>
+
+09. ExtensionMethods.cs
+    - static extension methods
+    - this keyword parameter
+    - how LINQ works internally
+
+10. NullableReferenceTypes.cs
+    - string vs string?
+    - null safety
+    - null warnings
+    - null forgiving operator (!)
+    - ?. operator
+    - ?? operator
+
+11. IDisposable_Using.cs
+    - IDisposable
+    - using
+    - resource cleanup
+    - deterministic cleanup
+
+12. Attributes.cs
+    - attribute syntax
+    - custom attributes
+    - reflection integration
+
+13. Reflection.cs
+    - Type
+    - typeof()
+    - GetProperties()
+    - GetMethods()
+    - runtime inspection
+
+14. DependencyInjectionBasics.cs
+    - dependency injection
+    - constructor injection
+    - singleton
+    - scoped
+    - transient
+
+15. BasicMultithreading.cs
+    - Thread
+    - Task
+    - lock
+    - synchronization basics
+
+
+PHASE 2 — .NET ECOSYSTEM
+------------------------
+01. Solutions (.sln)
+02. Projects (.csproj)
+03. NuGet packages
+04. Build process
+05. Debugging
+06. Configuration system
+07. Logging basics
+08. Dependency Injection in .NET
+09. Project organization
+10. appsettings.json
+
+
+PHASE 3 — WEB FUNDAMENTALS
+--------------------------
+01. HTTP
+02. REST APIs
+03. JSON
+04. Status codes
+05. Headers
+06. Cookies
+07. Sessions
+08. Authentication basics
+09. Authorization basics
+10. CORS
+11. HTML
+12. CSS
+13. JavaScript basics
+14. MVC pattern
+
+
+PHASE 4 — DATABASES
+-------------------
+SQL Basics
+01. SELECT
+02. INSERT
+03. UPDATE
+04. DELETE
+05. WHERE
+06. ORDER BY
+07. GROUP BY
+08. JOIN
+09. Indexes
+10. Transactions
+11. Foreign keys
+12. Normalization
+
+
+Entity Framework Core
+01. DbContext
+02. Models
+03. Migrations
+04. LINQ queries
+05. Relationships
+06. Tracking vs NoTracking
+07. Repository pattern
+
+
+PHASE 5 — ASP.NET CORE
+----------------------
+01. Minimal APIs
+02. Controllers
+03. Routing
+04. Dependency Injection
+05. Middleware
+06. Configuration
+07. Logging
+08. Model binding
+09. Validation
+10. Swagger / OpenAPI
+11. REST API design
+12. Authentication
+13. Authorization
+14. JWT
+15. Entity Framework integration
+16. Background Services
+17. Caching
+18. Deployment
+
+
+RECOMMENDED EXACT ORDER FROM HERE
+---------------------------------
+01. Exceptions.cs
+02. Delegates.cs
+03. LambdaExpressions.cs
+04. Events.cs
+05. LINQ.cs
+06. AsyncAwait.cs
+07. FileIO.cs
+08. CollectionsAdvanced.cs
+09. ExtensionMethods.cs
+10. NullableReferenceTypes.cs
+11. IDisposable_Using.cs
+12. Attributes.cs
+13. Reflection.cs
+14. DependencyInjectionBasics.cs
+
+
+START ASP.NET CORE
+
+
+LEARN ALONGSIDE ASP.NET
+-----------------------
+- SQL
+- Entity Framework Core
+- Authentication
+- Deployment
+- Advanced multithreading
+
+
+MOST IMPORTANT BEFORE ASP.NET
+-----------------------------
+Critical:
+- Delegates
+- Lambdas
+- LINQ
+- Async/Await
+- Dependency Injection
+
+Nice to know:
+- Reflection
+- Attributes
+- Advanced multithreading
