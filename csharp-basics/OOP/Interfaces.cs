@@ -4,6 +4,7 @@
 // InterfaceVsAbstractDemo();
 // UnrelatedClassesDemo();
 // ExplicitInterfaceDemo();
+// InterfacePropertyDemo();
 
 
 // =====================================================
@@ -350,6 +351,187 @@ Explicit interface implementation mostly C# specific feature
 
 
 // =====================================================
+// 7. INTERFACE PROPERTIES
+// =====================================================
+
+void InterfacePropertyDemo()
+{
+    Person2 person = new();
+    person.Name = "Alice";
+    Console.WriteLine(person.Name);
+
+    Product product = new("Laptop");
+
+    Consoe.WriteLine(product.Name);
+}
+
+/*
+Interfaces can define:
+- Methods
+- Properties
+- Events
+- Indexers
+
+Interface property: Defines contract NOT storage
+
+
+Example:
+
+interface IHasName
+{
+    string Name
+    {
+        get;
+    }
+}
+
+
+Meaning:
+"Implementing type must provide readable Name property"
+
+Implementation:
+
+class Person : IHasName
+{
+    public string Name
+    {
+        get;
+        set;
+    }
+}
+
+
+Allowed:
+Interface:
+- string Name { get; }
+
+Implementation:
+- string Name { get; }
+- string Name { get; set; }
+- string Name { get; init; }
+
+Reason:
+Interface requires: Readable property
+Implementation provides: Equal or more capability
+
+
+NOT allowed:
+Interface:
+- string Name { get; set; }
+
+Implementation:
+- string Name { get; }
+
+Compiler error: 
+Interface required: Readable + writable
+Implementation only provides: Readable
+
+
+Init only contract:
+Interface:
+string Name
+{
+    get;
+    init;
+}
+
+Allowed:
+string Name
+{
+    get;
+    init;
+}
+
+NOT allowed:
+string Name
+{
+    get;
+    set;
+}
+
+Reason:
+Interface promised: Initialization only
+set allows: Mutation anytime
+
+
+Implementation must satisfy
+interface contract
+
+
+Implementation may use:
+1. Manual property:
+private string name = "";
+
+public string Name
+{
+    get
+    {
+        return name;
+    }
+
+    set
+    {
+        name = value;
+    }
+}
+
+2. Auto property:
+public string Name
+{
+    get;
+    set;
+}
+
+3. Computed property:
+public string Name
+{
+    get
+    {
+        return firstName + " " + lastName;
+    }
+}
+
+
+Interface requires behavior NOT implementation
+
+
+C++ comparison:
+C++ usually uses methods:
+class IHasName
+{
+public:
+
+    virtual string GetName() = 0;
+};
+
+
+C# property syntax:
+string Name { get; }
+
+
+Java comparison:
+Java traditionally uses:
+String getName();
+
+
+C# property:
+person.Name
+Cleaner property syntax
+
+
+Mental model:
+Interface property
+    ↓
+Contract
+
+
+Class property
+    ↓
+Implementation
+*/
+
+
+// =====================================================
 // TYPES
 // =====================================================
 
@@ -433,5 +615,42 @@ class Person : IWorker
     void IWorker.Work()
     {
         Console.WriteLine("Working");
+    }
+}
+
+interface IHasName2
+{
+    string Name
+    {
+        get;
+    }
+}
+
+
+class Person2 : IHasName2
+{
+    public string Name
+    {
+        get;
+        set;
+    } = "";
+}
+
+
+class Product : IHasName2
+{
+    private readonly string name;
+
+    public Product(string name)
+    {
+        this.name = name;
+    }
+
+    public string Name
+    {
+        get
+        {
+            return name;
+        }
     }
 }
