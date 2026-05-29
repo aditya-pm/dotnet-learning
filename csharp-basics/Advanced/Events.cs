@@ -133,12 +133,55 @@ void EventHandlerDemo()
 }
 
 /*
-EventHandler: Built-in delegate
+EventHandler: Built-in delegate provided by .NET
 
 Signature:
 void Handler(object? sender, EventArgs e)
 
+Equivalent idea:
+delegate void EventHandler(object? sender, EventArgs e);
+- sender: Object that raised the event
+- Useful when one handler is subscribed to multiple publishers
+
+
+Example:
+button1.Click += Button_Click;
+button2.Click += Button_Click;
+
+Inside handler:
+if (sender == button1)
+{
+    ...
+}
+if (sender == button2)
+{
+    ...
+}
+
+
+EventArgs:
+Contains additional event data
+EventArgs.Empty means: "No data to send"
+
+For custom data:
+Create class derived from EventArgs and use:
+EventHandler<TEventArgs>
+
+Example:
+EventHandler<PriceChangedEventArgs>
+
+
 Most common event type in .NET
+
+
+sender
+↓
+Who triggered event?
+
+EventArgs
+↓
+What information came
+with the event?
 */
 
 
