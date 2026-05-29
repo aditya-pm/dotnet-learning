@@ -5,6 +5,7 @@
 // TaskStartBehaviorDemo();
 // MultipleAwaitDemo();
 // TaskWhenAllDemo();
+// TaskWhenAnyDemo()
 // AsyncMainDemo();
 // ExceptionDemo();
 
@@ -179,7 +180,7 @@ asyncio.create_task(...)
 C#:
 Task<int> task = GetNumberAsync();
 
-Task starts immediately
+Calling an async method typically starts executing the method immediately until it reaches its first await.
 Task represents: Work already in progress
 
 Later:
@@ -284,7 +285,52 @@ Tasks already completed
 
 
 // =====================================================
-// 8. ASYNC MAIN
+// 8. TASK.WHENANY
+// =====================================================
+
+async Task TaskWhenAnyDemo()
+{
+    Task<int> task1 = GetNumberAfterDelayAsync(1000, 1);
+    Task<int> task2 = GetNumberAfterDelayAsync(3000, 2);
+
+    Task<int> completedTask = await Task.WhenAny(task1, task2);
+
+    Console.WriteLine(await completedTask);
+}
+
+/*
+Task.WhenAny()
+- Waits for first task to complete
+
+Important: Returns the completed task, NOT its result
+
+Reason: WhenAny answers: "Which task finished first?"
+
+Example:
+Task<int> completedTask = await Task.WhenAny(task1, task2);
+
+First await: Find winning task
+
+Second await: Get winner's result
+int result = await completedTask;
+
+Compare:
+Task.WhenAll()
+    ↓
+Returns all results
+
+Task.WhenAny()
+    ↓
+Returns winning task
+
+Common use:
+- Race operations
+- Use fastest response
+*/
+
+
+// =====================================================
+// 9. ASYNC MAIN
 // =====================================================
 
 async Task AsyncMainDemo()
@@ -301,8 +347,9 @@ async def main():
 
 asyncio.run(main())
 
-
-C#:
+C#: 
+Demo method is not actually Main().
+Real entry point would be:
 static async Task Main()
 {
     ...
@@ -318,7 +365,7 @@ C# largely hides it
 
 
 // =====================================================
-// 9. EXCEPTIONS
+// 10. EXCEPTIONS
 // =====================================================
 
 async Task ExceptionDemo()
@@ -363,10 +410,16 @@ async Task<int> GetNumberAsync()
 }
 
 
+async Task<int> GetNumberAfterDelayAsync(int delay, int value)
+{
+    await Task.Delay(delay);
+    return value;
+}
+
+
 async Task ThrowErrorAsync()
 {
     await Task.Delay(1000);
-
     throw new Exception("Boom");
 }
 
