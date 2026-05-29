@@ -3,128 +3,28 @@ C# + .NET + ASP.NET Core Roadmap
 
 PHASE 1 — CORE C# BEFORE ASP.NET
 --------------------------------
-01. Exceptions.cs
-    - try / catch
-    - finally
-    - throw
-    - custom exceptions
-    - exception hierarchy
-    - stack unwinding
-    - throw vs throw ex
-    - exception filters
-
-02. Delegates.cs
-    - delegate keyword
-    - delegate variables
-    - multicast delegates
-    - Func<>
-    - Action<>
-    - Predicate<>
-
-03. LambdaExpressions.cs
-    - => syntax
-    - expression lambdas
-    - statement lambdas
-    - closures
-    - captures
-
-04. Events.cs
-    - event keyword
-    - publisher subscriber model
-    - EventHandler
-    - custom events
-
-05. LINQ.cs
-    - Where()
-    - Select()
-    - OrderBy()
-    - ThenBy()
-    - First()
-    - FirstOrDefault()
-    - Single()
-    - Any()
-    - All()
-    - Count()
-    - GroupBy()
-    - Distinct()
-    - SelectMany()
-
-06. AsyncAwait.cs
-    - async
-    - await
-    - Task
-    - Task<T>
-    - ConfigureAwait
-    - parallel tasks
-    - Task.WhenAll()
-    - Task.WhenAny()
-
+[DONE] 01. Exceptions.cs
+[DONE] 02. Delegates.cs
+[DONE] 03. LambdaExpressions.cs
+[DONE] 04. Events.cs
+[DONE] 05. LINQ.cs
+[DONE] 06. AsyncAwait.cs
 07. FileIO.cs
-    - File
-    - Directory
-    - Path
-    - StreamReader
-    - StreamWriter
-    - serialization basics
-
 08. CollectionsAdvanced.cs
-    - Dictionary<TKey, TValue>
-    - HashSet<T>
-    - Queue<T>
-    - Stack<T>
-    - LinkedList<T>
-    - SortedDictionary<T>
-
 09. ExtensionMethods.cs
-    - static extension methods
-    - this keyword parameter
-    - how LINQ works internally
-
 10. NullableReferenceTypes.cs
-    - string vs string?
-    - null safety
-    - null warnings
-    - null forgiving operator (!)
-    - ?. operator
-    - ?? operator
-
 11. IDisposable_Using.cs
-    - IDisposable
-    - using
-    - resource cleanup
-    - deterministic cleanup
-
 12. Attributes.cs
-    - attribute syntax
-    - custom attributes
-    - reflection integration
-
 13. Reflection.cs
-    - Type
-    - typeof()
-    - GetProperties()
-    - GetMethods()
-    - runtime inspection
-
 14. DependencyInjectionBasics.cs
-    - dependency injection
-    - constructor injection
-    - singleton
-    - scoped
-    - transient
-
 15. BasicMultithreading.cs
-    - Thread
-    - Task
-    - lock
-    - synchronization basics
 
 
 PHASE 2 — .NET ECOSYSTEM
 ------------------------
-01. Solutions (.sln)
-02. Projects (.csproj)
-03. NuGet packages
+[DONE] 01. Solutions (.sln)
+[DONE] 02. Projects (.csproj)
+[DONE] 03. NuGet packages
 04. Build process
 05. Debugging
 06. Configuration system
@@ -203,12 +103,12 @@ PHASE 5 — ASP.NET CORE
 
 RECOMMENDED EXACT ORDER FROM HERE
 ---------------------------------
-01. Exceptions.cs
-02. Delegates.cs
-03. LambdaExpressions.cs
-04. Events.cs
-05. LINQ.cs
-06. AsyncAwait.cs
+[DONE] 01. Exceptions.cs
+[DONE] 02. Delegates.cs
+[DONE] 03. LambdaExpressions.cs
+[DONE] 04. Events.cs
+[DONE] 05. LINQ.cs
+[DONE] 06. AsyncAwait.cs
 07. FileIO.cs
 08. CollectionsAdvanced.cs
 09. ExtensionMethods.cs
@@ -234,10 +134,10 @@ LEARN ALONGSIDE ASP.NET
 MOST IMPORTANT BEFORE ASP.NET
 -----------------------------
 Critical:
-- Delegates
-- Lambdas
-- LINQ
-- Async/Await
+- Delegates                 [DONE]
+- Lambdas                   [DONE]
+- LINQ                      [DONE]
+- Async/Await               [DONE]
 - Dependency Injection
 
 Nice to know:
