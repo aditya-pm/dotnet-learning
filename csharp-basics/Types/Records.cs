@@ -1,10 +1,167 @@
 // BasicRecordDemo();
 // ValueEqualityDemo();
-ImmutabilityDemo();
+// ImmutabilityDemo();
 // WithExpressionDemo();
-// RecordClassVsClassDemo();
 // RecordStructDemo();
-// MethodDemo();
+// PositionalVsNominalDemo();
+// DeconstructionDemo();
+// RecordBodyDemo();
+
+
+// =====================================================
+// RECORDS IN THE TYPE SYSTEM
+// =====================================================
+
+/*
+Types
+│
+├── Reference Types
+│   ├── class
+│   └── record class
+│
+└── Value Types
+    ├── struct
+    └── record struct
+
+
+The most important distinction is:
+
+Reference Semantics
+vs
+Value Semantics
+
+
+-----------------------------------------------------
+CLASS
+-----------------------------------------------------
+
+class Person
+
+Reference Type
+
+Assignment copies the reference:
+
+Person p1 = new("Alice");
+Person p2 = p1;
+
+Both variables point to the same object.
+
+Changing through one variable
+affects the same object.
+
+
+-----------------------------------------------------
+STRUCT
+-----------------------------------------------------
+
+struct Point
+
+Value Type
+
+Assignment copies the value:
+
+Point p1 = new(1, 2);
+Point p2 = p1;
+
+p2 becomes an independent copy.
+
+Changing p2 does not affect p1.
+
+
+-----------------------------------------------------
+RECORDS
+-----------------------------------------------------
+
+Records do NOT change:
+
+- Reference semantics
+- Value semantics
+
+Records ADD:
+
+- Value equality
+- Better ToString()
+- with expressions
+- Deconstruction
+- Less boilerplate
+
+
+-----------------------------------------------------
+CLASS
+-----------------------------------------------------
+
+class Person
+
+Assignment:
+Copies reference
+
+Equality:
+Reference equality
+
+
+-----------------------------------------------------
+RECORD CLASS
+-----------------------------------------------------
+
+record Person
+
+Assignment:
+Copies reference
+
+Equality:
+Value equality
+
+
+-----------------------------------------------------
+STRUCT
+-----------------------------------------------------
+
+struct Point
+
+Assignment:
+Copies value
+
+Equality:
+No automatic ==
+
+
+-----------------------------------------------------
+RECORD STRUCT
+-----------------------------------------------------
+
+record struct Point
+
+Assignment:
+Copies value
+
+Equality:
+Value equality
+
+
+CHEAT SHEET
+
+Type            Assignment         Equality
+------------------------------------------------
+class           Reference          Reference
+record class    Reference          Value
+struct          Value              Manual
+record struct   Value              Value
+
+
+For ASP.NET Core:
+
+Most common:
+- record class (DTOs)
+
+Occasional:
+- class (Entities, Services)
+
+Rare:
+- record struct
+
+Very rare:
+- struct
+*/
 
 
 // =====================================================
@@ -21,16 +178,22 @@ void BasicRecordDemo()
 }
 
 /*
-- record is short for: record class
-- Reference type
-- Primary constructor syntax:
-  record Person(string Name, int Age)
+record is shorthand for: record class
 
-Compiler creates:
-- Properties
+Example:
+record Person(string Name, int Age);
+
+Compiler generates:
 - Constructor
+- Properties
+- Equals()
+- GetHashCode()
 - ToString()
-- Equality behavior
+- Deconstruct()
+- == and !=
+
+Records are primarily designed
+for data-centric types.
 */
 
 
@@ -47,13 +210,18 @@ void ValueEqualityDemo()
 }
 
 /*
-Record equality: compares values
-Output:
-True
+Output: True
 
-Class equality: compares references
-Default output:
-False
+Records compare values.
+
+For normal classes:
+
+Person p1 = new("Alice");
+Person p2 = new("Alice");
+
+p1 == p2
+
+would be False because classes compare references.
 */
 
 
@@ -66,28 +234,43 @@ void ImmutabilityDemo()
     Person3 person = new("Alice", 22);
 
     Console.WriteLine(person.Name);
-    // person.Name = "Bob";  // Init-only property or indexer 'Person3.Name' can only be assigned in an object initializer, or on 'this' or 'base' in an instance constructor or an 'init' accessor.
+
+    // person.Name = "Bob";
 }
 
 /*
-Primary constructor record:
-- Properties become:
-  - init only
-  Can assign: object creation
-  - Cannot assign: later
+Positional records generate
+init-only properties.
 
-Approximate idea:
+Equivalent idea:
 
 public string Name
 {
     get;
     init;
 }
+
+Can assign:
+- During object creation
+
+Cannot assign:
+- Later
+
+Note:
+
+Records are NOT inherently immutable.
+
+This is valid:
+
+record Person
+{
+    public string Name { get; set; }
+}
 */
 
 
 // =====================================================
-// 4. WITH EXPRESSION
+// 4. WITH EXPRESSIONS
 // =====================================================
 
 void WithExpressionDemo()
@@ -99,45 +282,27 @@ void WithExpressionDemo()
         Y = 20
     };
 
-
     Console.WriteLine(point1);
     Console.WriteLine(point2);
 }
 
 /*
-with
-- Copies object
-- Changes selected values
-- Original unchanged
+with expression:
+- Creates a copy
+- Changes selected members
+
+Original unchanged
+
+Output:
+Point { X = 5, Y = 10 }
+Point { X = 5, Y = 20 }
+
+Useful for immutable objects.
 */
 
 
 // =====================================================
-// 5. RECORD VS CLASS
-// =====================================================
-
-void RecordClassVsClassDemo()
-{
-    UserClass u1 = new("Alice");
-    UserClass u2 = new("Alice");
-    Console.WriteLine(u1 == u2);
-
-    UserRecord r1 = new("Alice");
-    UserRecord r2 = new("Alice");
-    Console.WriteLine(r1 == r2);
-}
-
-/*
-Class: Reference equality
-Output: False
-
-Record: Value equality
-Output: True
-*/
-
-
-// =====================================================
-// 6. RECORD STRUCT
+// 5. RECORD STRUCT
 // =====================================================
 
 void RecordStructDemo()
@@ -152,32 +317,159 @@ void RecordStructDemo()
 }
 
 /*
-- record struct: Value type
-- Struct semantics + record features:
-- value equality
+record struct: Value Type
+
+Assignment copies the value.
+Output:
+1
+50
+
+c1 and c2 are independent copies.
+
+This is called: Value Semantics
+
+record struct also provides:
+- Value equality
 - ToString()
-- primary constructor
-- convenience syntax
+- with expressions
+- Deconstruction
+*/
+    
+
+// =====================================================
+// 6. POSITIONAL VS NOMINAL RECORDS
+// =====================================================
+
+void PositionalVsNominalDemo()
+{
+    PersonPositional p1 = new("Alice", 22);
+
+    PersonNominal p2 = new()
+    {
+        Name = "Alice",
+        Age = 22
+    };
+
+    Console.WriteLine(p1);
+    Console.WriteLine(p2);
+}
+
+/*
+POSITIONAL RECORD
+record Person(string Name, int Age);
+
+Compiler generates:
+- Constructor
+- Properties
+- Equality members
+- ToString()
+- Deconstruct()
+
+Very common for DTOs.
+
+
+NOMINAL RECORD
+record Person
+{
+    public string Name { get; init; }
+    public int Age { get; init; }
+}
+
+You define members yourself.
+
+Useful when you need:
+- Validation attributes
+- Custom constructors
+- Additional properties
+- More complex logic
 */
 
 
 // =====================================================
-// 7. METHODS
+// 7. DECONSTRUCTION
 // =====================================================
 
-void MethodDemo()
+void DeconstructionDemo()
 {
-    Rectangle rect = new(5, 4);
-    Console.WriteLine(rect.Area());
+    Person person = new("Alice", 22);
+
+    var (name, age) = person;
+
+    Console.WriteLine(name);
+    Console.WriteLine(age);
 }
 
 /*
-Records can contain:
+Positional records automatically generate: Deconstruct()
+
+Allows:
+var (name, age) = person;
+
+Output:
+Alice
+22
+*/
+
+
+// =====================================================
+// 8. RECORD BODY
+// =====================================================
+
+void RecordBodyDemo()
+{
+    Product product = new("Laptop", 1000);
+
+    Console.WriteLine(product.DisplayName);
+}
+
+/*
+Records are still classes.
+
+They can contain:
 - Methods
 - Properties
 - Constructors
+- Fields
+- Static members
 
-Like classes
+A record is not limited to storing data.
+*/
+
+
+// =====================================================
+// 9. POSITIONAL RECORD EXPANSION
+// =====================================================
+
+/*
+This:
+
+record Person(string Name, int Age);
+
+is approximately:
+
+record Person
+{
+    public string Name { get; init; }
+    public int Age { get; init; }
+
+    public Person(string name, int age)
+    {
+        Name = name;
+        Age = age;
+    }
+
+    Compiler also generates:
+
+    - Equals()
+    - GetHashCode()
+    - ToString()
+    - Deconstruct()
+    - == and !=
+}
+
+Positional records are mostly
+syntax sugar that removes a lot
+of boilerplate.
 */
 
 
@@ -187,37 +479,24 @@ Like classes
 
 record Person(string Name, int Age);
 
-
 record Person2(string Name, int Age);
-
 
 record Person3(string Name, int Age);
 
-
 record Point(int X, int Y);
-
-
-class UserClass
-{
-    public string Name;
-
-    public UserClass(string name)
-    {
-        Name = name;
-    }
-}
-
-
-record UserRecord(string Name);
-
 
 record struct Coordinate(int X, int Y);
 
+record PersonPositional(string Name, int Age);
 
-record Rectangle(int Width, int Height)
+record PersonNominal
 {
-    public int Area()
-    {
-        return Width * Height;
-    }
+    public string Name { get; init; } = "";
+    public int Age { get; init; }
+}
+
+record Product(string Name, decimal Price)
+{
+    public string DisplayName
+        => $"{Name} - ${Price}";
 }
