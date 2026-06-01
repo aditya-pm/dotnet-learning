@@ -2,4 +2,6 @@
   <Folder Name="/csharp-basics/">
     <Project Path="MiniProjects/ConsoleApp/ConsoleApp.csproj" />
   </Folder>
+  <Folder Name="/csharp-basics/" />
+  <Project Path="spectre-console/spectre-console.csproj" />
 </Solution>
