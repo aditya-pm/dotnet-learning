@@ -1,7 +1,7 @@
 <Solution>
-  <Folder Name="/csharp-basics/">
-    <Project Path="MiniProjects/ConsoleApp/ConsoleApp.csproj" />
+  <Folder Name="/MiniProjects/" />
+  <Folder Name="/MiniProjects/GameStore/">
+    <Project Path="MiniProjects/GameStore/GameStore.Api/GameStore.Api.csproj" />
   </Folder>
-  <Folder Name="/csharp-basics/" />
   <Project Path="spectre-console/spectre-console.csproj" />
 </Solution>
