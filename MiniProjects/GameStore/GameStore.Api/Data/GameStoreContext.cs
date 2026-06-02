@@ -8,3 +8,16 @@ public class GameStoreContext(DbContextOptions<GameStoreContext> options)
 {
     public DbSet<Game> Games => Set<Game>();
 }
+
+/*
+
+public class GameStoreContextAlternate : DbContext
+{
+    public GameStoreContextAlternate(
+        DbContextOptions<GameStoreContextAlternate> options) : base(options)
+    {
+        
+    }
+}
+
+*/
