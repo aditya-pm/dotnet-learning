@@ -19,6 +19,17 @@ public static class DataExtensions
         // reads from appsettings.json
         var connString = builder.Configuration.GetConnectionString("GameStore");
 
+        // AddSqlite also registers dependency (GameStoreContext) with a scoped service
+        // lifetime, similar to AddScope below
+        // builder.Services.AddScoped<GameStoreContext>();
+        //
+        // DbContext has a scoped service lifetime because:
+        // 1. It ensures that a new instance of DbContext is created per request
+        // 2. DB connections are a limited and expensive resource
+        // 3. DbContext is not thread-safe. Scoped avoids concurrency issues
+        // 4. Makes it easier to manage transactions and ensure data consistency
+        // 5. Reusing a DbContext instance can lead to increased memory usage
+
         builder.Services.AddSqlite<GameStoreContext>(
             connString,
             optionsAction: options =>
