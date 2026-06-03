@@ -1,13 +1,11 @@
 using GameStore.Api.Data;
 using GameStore.Api.Endpoints;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddValidation();
-
-var connString = "Data Source=GameStore.db";
-// dependency injection below (we inject GameStoreContext)
-builder.Services.AddSqlite<GameStoreContext>(connString);
+builder.AddGameStoreDb();
 
 var app = builder.Build();
 
