@@ -5,7 +5,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddValidation();
 
-var connString = "Data Souce=GameStore.db";
+var connString = "Data Source=GameStore.db";
+// dependency injection below (we inject GameStoreContext)
 builder.Services.AddSqlite<GameStoreContext>(connString);
 
 var app = builder.Build();
