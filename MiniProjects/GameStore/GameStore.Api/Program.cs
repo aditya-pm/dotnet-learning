@@ -10,6 +10,7 @@ builder.AddGameStoreDb();
 var app = builder.Build();
 
 app.MapGamesEndpoints();
+app.MapGenresEndpoints();
 
 // equivalent to: dotnet ef database update
 // NOTE: not equivalent to: dotnet ef migrations add 
