@@ -13,4 +13,8 @@ var app = builder.Build();
 
 app.MapGamesEndpoints();
 
+// equivalent to: dotnet ef database update
+// NOTE: not equivalent to: dotnet ef migrations add 
+app.MigrateDb();
+
 app.Run();
